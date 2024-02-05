@@ -9,7 +9,7 @@
     "install-all-deps": "concurrently \"npm run server-install\" \"npm run client-install\"",
     "server": "nodemon backend/server.js",
     "start": "node backend/server.js",
-    "build": "npm install && npm install --prefix frontends && npm run build --prefix frontends",
+    "build": "npm install --prefix frontends --production=false && npm run build --prefix frontends",
     "client": "npm run dev --prefix frontends",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
