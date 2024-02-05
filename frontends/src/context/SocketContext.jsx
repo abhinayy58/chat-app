@@ -13,9 +13,13 @@ export const SocketConetxtProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [onlineUser, setOnlineUser] = useState([]);
   const { authUser } = useAuthContext();
+
+  
+  // http://localhost:5000 for local server
+
   useEffect(() => {
     if (authUser) {
-      const socket = io("http://localhost:5000", {
+      const socket = io("https://instanttalks.onrender.com/", {
         query: {
           userId: authUser._id,
         },
