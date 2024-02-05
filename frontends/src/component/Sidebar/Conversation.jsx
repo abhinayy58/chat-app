@@ -6,7 +6,7 @@ const Coversation = (props) => {
   const {selectedConversation,setSelectedConversation} = useConversation()
   const isSelected = selectedConversation?._id === props._id
   const {onlineUser} = useSocketContext()
- const isOnline = onlineUser.includes(props._id)
+ const isOnline = onlineUser.includes(props?._id)
   return (
     <>
       <div className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : "" }`} onClick={() => setSelectedConversation(props)} >
