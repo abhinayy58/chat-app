@@ -35,9 +35,9 @@ app.use("/api/messages", messageRoute);
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, "frontend/dist")));
+  app.use(express.static(path.join(__dirname, "frontends/dist")));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    res.sendFile(path.resolve(__dirname, "frontends", "dist", "index.html"));
   });
 } else {
   app.get("/", (req, res) => res.send("Server is Ready"));
@@ -48,8 +48,8 @@ app.use(errorHandler);
 process.on("uncaughtException", function (err) {
   console.log(err);
   process.exit(1);
-});
-
+}); 
+ 
 server.listen(port, () => {
   connectDb();
   console.log(`Server is running on port ${port}`);
