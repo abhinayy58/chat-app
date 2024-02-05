@@ -16,10 +16,12 @@ export const SocketConetxtProvider = ({ children }) => {
 
   
   // http://localhost:5000 for local server
+console.log(import.meta.env.MODE)
 
   useEffect(() => {
+    const env = import.meta.env.MODE === "development" ? "http://localhost:5000" : "https://instanttalks.onrender.com";
     if (authUser) {
-      const socket = io("https://instanttalks.onrender.com/", {
+      const socket = io(env, {
         query: {
           userId: authUser._id,
         },
