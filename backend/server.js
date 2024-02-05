@@ -1,4 +1,3 @@
-
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
@@ -12,13 +11,11 @@ import userRoute from "./routes/user.route.js";
 
 import connectDb from "./config/db.js";
 import { errorHandler, notFound } from "./middleware/ErrorMiddleware.js";
-import {app,server} from './socket/socket.js'
+import { app, server } from "./socket/socket.js";
 const port = process.env.PORT || 5500;
 
-
-app.use(express.json())
-app.use(CookieParser())
-
+app.use(express.json());
+app.use(CookieParser());
 
 morgan.token("body", (req) => JSON.stringify(req.body));
 
@@ -32,15 +29,10 @@ app.use(
   )
 );
 
-   
- 
-  
-
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRoute);
 app.use("/api/messages", messageRoute);
 
- 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
   app.use(express.static(path.join(__dirname, "frontend/dist")));
@@ -50,15 +42,15 @@ if (process.env.NODE_ENV === "production") {
 } else {
   app.get("/", (req, res) => res.send("Server is Ready"));
 }
- 
- 
 
 app.use(notFound);
 app.use(errorHandler);
+process.on("uncaughtException", function (err) {
+  console.log(err);
+  process.exit(1);
+});
 
-server.listen(port, () =>{ 
-
-    connectDb()
+server.listen(port, () => {
+  connectDb();
   console.log(`Server is running on port ${port}`);
 });
- 
