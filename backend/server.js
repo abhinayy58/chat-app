@@ -1,7 +1,6 @@
-import dotenv from "dotenv";
-dotenv.config();
-import express from "express";
 import path from "path";
+import express from "express";
+import dotenv from "dotenv";
 import morgan from "morgan";
 import CookieParser from "cookie-parser";
 
@@ -13,6 +12,9 @@ import connectDb from "./config/db.js";
 import { errorHandler, notFound } from "./middleware/ErrorMiddleware.js";
 import { app, server } from "./socket/socket.js";
 const port = process.env.PORT || 5500;
+
+
+dotenv.config();
 
 app.use(express.json());
 app.use(CookieParser());
