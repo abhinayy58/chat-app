@@ -11,10 +11,11 @@ import userRoute from "./routes/user.route.js";
 import connectDb from "./config/db.js";
 import { errorHandler, notFound } from "./middleware/ErrorMiddleware.js";
 import { app, server } from "./socket/socket.js";
-const port = process.env.PORT || 5500;
+
 
 
 dotenv.config();
+const port = process.env.PORT || 5500;  
 
 app.use(express.json());
 app.use(CookieParser());
